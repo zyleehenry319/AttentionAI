@@ -285,10 +285,6 @@ Enable debug logging by checking logcat for tags:
 - **Selective analysis** - Only uploaded content is analyzed
 - **Transparency** - Clear indication when recording is active
 
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
 ### Development Setup
 
 1. **Fork the repository**
@@ -304,25 +300,9 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - **Comprehensive error handling**
 - **Documentation for public APIs**
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - **Google Gemini AI** for advanced video analysis capabilities
 - **Android MediaProjection API** for screen recording functionality
 - **Jetpack Compose** for modern UI development
 - **Room Database** for local data persistence
-
-## Support
-
-For support, please:
-1. **Check troubleshooting section** above
-2. **Search existing issues** on GitHub
-3. **Create a new issue** with detailed information
-4. **Include logs** and device information
-
----
-
-**Built with ❤️ for productivity enthusiasts**
