@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AttentionAI</string>
+    <string name="permission_required">Permissions Required</string>
+    <string name="permission_description">This app needs microphone and storage permissions to record your screen and audio for productivity analysis.</string>
+    <string name="overlay_permission_required">Overlay Permission Required</string>
+    <string name="overlay_permission_description">This app needs overlay permission to provide floating controls during screen recording.</string>
+    <string name="recording_started">Screen recording started</string>
+    <string name="recording_stopped">Screen recording stopped</string>
+    <string name="recording_failed">Failed to start recording</string>
+    <string name="ai_processing">AI is processing your activity...</string>
+    <string name="summary_generated">Summary generated successfully</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="no_active_session">No active recording session</string>
+    <string name="ask_question_hint">Ask me about your activity...</string>
+    <string name="generate_summary">Generate Summary</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="grant_overlay_permission">Grant Overlay Permission</string>
+    <string name="recent_sessions">Recent Sessions</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="ai_assistant">AI Assistant</string>
+    <string name="session_summary">Session Summary</string>
+    <string name="permissions_granted">All permissions granted</string>
+    <string name="permissions_denied">Permissions required for app functionality</string>
+    <string name="checking_permissions">Checking permissions...</string>
+    <string name="recording_active">Recording Active</string>
+    <string name="ready_to_record">Ready to Record</string>
+    <string name="apps_used">Apps Used</string>
+    <string name="productivity">Productivity</string>
+</resources>
+
