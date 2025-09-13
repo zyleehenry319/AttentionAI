@@ -1,246 +1,328 @@
-# AttentionAI - AI-Powered Android Productivity App
+# AttentionAI - Productivity Tracking & Analysis
 
-A revolutionary Android productivity app that uses advanced AI to analyze your phone usage patterns, providing intelligent insights, personalized recommendations, and comprehensive activity summaries. The app can see and hear what's happening on your phone screen, then use OpenAI's GPT-4 to provide deep analysis and actionable advice.
+AttentionAI is an Android application that helps users understand and improve their digital habits through intelligent screen recording, activity tracking, and AI-powered analysis using Google's Gemini API.
 
-## 🚀 Key Features
+## Features
 
-### 🤖 **AI-Powered Intelligence** (Main Feature)
-- **OpenAI GPT-4 Integration**: Real AI analysis using the most advanced language model
-- **Intelligent Question & Answer**: Ask any question about your phone activity and get AI-powered responses
-- **Smart Summaries**: AI-generated comprehensive session summaries with insights and recommendations
-- **Productivity Insights**: Deep behavioral analysis with personalized productivity scores
-- **Custom Recommendations**: Actionable advice tailored to your specific usage patterns
-- **Pattern Recognition**: AI identifies trends, distractions, and productivity opportunities
+### 🎥 Screen Recording
+- **Background screen recording** with system audio capture
+- **Foreground service** ensures continuous recording even when app is minimized
+- **Optimized video encoding** with HEVC/H.264 compression
+- **Automatic file management** with organized storage in device Movies directory
 
-### 🎥 **Advanced Screen & Audio Capture**
-- **Screen Recording**: Captures screen content using Android's MediaProjection API
-- **Audio Recording**: Records microphone audio for comprehensive activity analysis
-- **Background Processing**: Runs as a foreground service to ensure continuous recording
-- **Text Recognition**: Uses ML Kit to extract text from screen content for AI analysis
+### 🤖 AI-Powered Analysis
+- **Gemini 2.5 Flash integration** for video content analysis
+- **Multi-file analysis** capability for comprehensive session insights
+- **Natural language querying** - ask questions about your productivity sessions
+- **Automatic summary generation** with key metrics and recommendations
+- **Productivity scoring** and personalized insights
 
-### 📊 **Comprehensive Analytics**
-- **Session Management**: Track recording sessions with timestamps and duration
-- **App Usage Analytics**: Monitor which apps you use and for how long
-- **AI Productivity Scoring**: Get intelligent productivity scores based on your behavior
-- **Historical Data**: View past sessions and compare productivity over time
-- **Real-time Insights**: Get AI analysis during or after your sessions
+### 📊 Activity Tracking
+- **Session-based tracking** with start/stop functionality
+- **App usage monitoring** and interaction logging
+- **Real-time event capture** including app switches and user interactions
+- **Historical data storage** with Room database persistence
 
-### 🎨 **Modern User Experience**
-- **Material Design 3**: Beautiful, modern interface following Google's design guidelines
-- **AI Configuration**: Easy setup for OpenAI API keys and AI parameters
-- **Dark/Light Theme**: Automatic theme switching based on system preferences
-- **Intuitive Controls**: Easy-to-use recording controls and AI features
-- **Real-time Status**: Live updates on recording status and AI processing
+### 💬 Intelligent Chat Interface
+- **Ask questions** about your recorded sessions
+- **Get productivity insights** and recommendations
+- **Analyze patterns** across multiple recording sessions
+- **Export summaries** and key findings
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 ### Core Components
-- **MainActivity**: Main entry point with permission handling and AI-powered UI
-- **ScreenRecordingService**: Foreground service for screen and audio recording
-- **AIProcessingService**: Background service for AI analysis and processing
-- **AIService**: OpenAI integration service with advanced prompt engineering
-- **ActivityRepository**: Data layer for managing sessions and AI insights
-- **Room Database**: Local storage for sessions, events, and AI insights
 
-### AI Integration
-- **OpenAI GPT-4**: Advanced language model for intelligent analysis
-- **Retrofit**: HTTP client for OpenAI API communication
-- **Prompt Engineering**: Specialized prompts for different analysis types
-- **Context Processing**: Comprehensive data preprocessing for AI
-- **Response Parsing**: Intelligent parsing of AI responses
+#### Services
+- **`ScreenRecordingService`** - Handles screen recording with MediaProjection API
 
-### Key Technologies
-- **Kotlin**: Modern Android development with coroutines
-- **Jetpack Compose**: Declarative UI framework with Material Design 3
-- **Room Database**: Local data persistence with type converters
-- **ML Kit**: On-device machine learning for text recognition
-- **MediaProjection API**: Screen recording capabilities
-- **MediaRecorder**: Audio recording functionality
-- **Retrofit + Gson**: API communication and JSON parsing
-- **SharedPreferences**: Secure API key storage
+#### Data Layer
+- **Room Database** - Local persistence for sessions, events, and insights
+- **Repository Pattern** - Clean separation of data access logic
+- **Type Converters** - JSON serialization for complex data types
 
-## Permissions Required
+#### AI Integration
+- **`GeminiService`** - High-level AI operations wrapper
+- **`GeminiRestService`** - Direct REST API communication with Gemini
+- **File Upload Management** - Resumable upload handling for large video files
 
-The app requires several permissions to function properly:
+#### UI
+- **Jetpack Compose** - Modern declarative UI framework
+- **MVVM Architecture** - Clean separation of concerns
+- **State Management** - Reactive UI updates with StateFlow
 
-- **RECORD_AUDIO**: For microphone access during recording
-- **WRITE_EXTERNAL_STORAGE**: For saving recorded files
-- **READ_EXTERNAL_STORAGE**: For accessing saved recordings
-- **FOREGROUND_SERVICE**: For background recording service
-- **SYSTEM_ALERT_WINDOW**: For overlay controls (optional)
-- **INTERNET**: For potential AI service integration
+## Setup & Configuration
 
-## 🚀 Installation & Setup
+### Prerequisites
+- Android SDK 26+ (API Level 26)
+- Google Gemini API Key
+- Device with Android 7.0+ for optimal performance
+
+### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd AttentionAI
+   git clone https://github.com/yourusername/attentionai.git
+   cd attentionai
    ```
 
-2. **Open in Android Studio**
-   - Import the project
-   - Sync Gradle files
-   - Install required dependencies
+2. **Configure Gemini API**
+   - Obtain a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Open the app and navigate to AI Configuration
+   - Enter your API key and configure model settings
 
-3. **Configure AI Services** (Required for AI features)
-   - Get your OpenAI API key from [platform.openai.com](https://platform.openai.com)
-   - Open the app and go to Settings (gear icon)
-   - Enter your API key and configure AI parameters
-   - Choose your preferred model (GPT-4 recommended)
+3. **Build and Install**
+   ```bash
+   ./gradlew assembleDebug
+   adb install app/build/outputs/apk/debug/app-debug.apk
+   ```
 
-4. **Build and Run**
-   - Connect an Android device (API 24+)
-   - Build and install the app
-   - Grant required permissions when prompted
-   - Configure AI settings for full functionality
+### Permissions Required
 
-## 📱 Usage Guide
+The app requires several permissions for full functionality:
 
-### 🤖 **AI-Powered Features** (Main Focus)
+```xml
+<!-- Core screen recording -->
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
+<uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
 
-#### **Setting Up AI**
-1. Open the app and tap the Settings (gear) icon
-2. Enter your OpenAI API key
-3. Choose your preferred model (GPT-4 recommended)
-4. Configure AI parameters (temperature, max tokens)
-5. Save configuration
+<!-- Background services -->
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
 
-#### **Asking AI Questions**
-1. **Quick Questions**: Use preset buttons for common queries:
-   - "What apps did I use today?"
-   - "How productive was I?"
-2. **Custom Questions**: Tap "Ask Custom Question" for specific queries:
-   - "What was I doing between 2-3 PM?"
-   - "How much time did I spend on social media?"
-   - "What were my main distractions today?"
-3. **Get AI Responses**: Receive intelligent, context-aware answers
+<!-- File storage -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-#### **AI-Generated Summaries**
-1. Tap "Generate Summary" for comprehensive session analysis
-2. Get AI-powered insights including:
-   - Key highlights and achievements
-   - Productivity patterns and trends
-   - Specific recommendations for improvement
-   - Detailed app usage breakdown
+<!-- Network -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-#### **AI Insights & Recommendations**
-1. Tap "Insights" to get deep behavioral analysis
-2. Receive personalized recommendations
-3. View productivity scores and key findings
-4. Get actionable advice for improvement
+<!-- System overlay -->
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+```
 
-### 🎥 **Recording & Data Collection**
+## Usage Guide
 
-#### **Starting a Recording Session**
-1. Open the app and grant necessary permissions
-2. Tap "Start Recording" to begin screen and audio capture
-3. The app runs in the background as a foreground service
-4. Use your phone normally - the app tracks everything
+### Starting a Recording Session
 
-#### **Managing Sessions**
-1. View active session duration in real-time
-2. Stop recording when done
-3. Access historical sessions and their AI analysis
-4. Compare productivity across different sessions
+1. **Launch AttentionAI**
+2. **Tap "Start Recording"** - This will request screen capture permission
+3. **Grant permissions** when prompted by Android
+4. **Recording begins automatically** - A notification appears showing active recording
+5. **Continue using your device normally** - The app records in the background
 
-## 🔒 Privacy & Security
+### Stopping a Session
 
-### **Data Privacy**
-- **Local Storage**: All recordings and raw data stay on your device
-- **AI Data Sharing**: Only aggregated, anonymized data sent to OpenAI
-- **No Personal Data**: AI receives app usage patterns, not personal content
-- **Secure API Keys**: API keys stored securely in Android SharedPreferences
-- **User Control**: Complete control over what data is shared with AI
+- **Tap "Stop Recording"** in the app, or
+- **Use the notification action** to stop from anywhere, or
+- **The service will auto-stop** when the app is closed
 
-### **AI Privacy Features**
-- **Context Filtering**: Only relevant productivity data sent to AI
-- **No Raw Content**: Screen recordings and audio stay local
-- **Anonymized Analysis**: AI analyzes patterns, not personal information
-- **Optional AI**: Can use app without AI features if preferred
-- **Data Deletion**: Complete data deletion options available
+### Analyzing Your Sessions
 
-### **Security Measures**
-- **Encrypted Storage**: All local data encrypted
-- **Permission Management**: Clear explanation of required permissions
-- **Secure Communication**: HTTPS for all API communications
-- **No Tracking**: No user tracking or analytics
+1. **Wait for upload** - Videos are automatically uploaded to Gemini after recording
+2. **Ask questions** like:
+   - "What apps did I use the most?"
+   - "How productive was this session?"
+   - "What were the main distractions?"
+   - "Summarize my activity patterns"
+3. **View insights** and recommendations generated by AI
+4. **Export summaries** for external use
 
-## Data Management
+### AI Configuration
 
-- **Automatic Cleanup**: Old recordings are automatically cleaned up
-- **Export Options**: Export summaries and insights
-- **Data Deletion**: Complete data deletion options available
-- **Storage Monitoring**: Track storage usage and manage space
+Navigate to **Settings > AI Configuration** to customize:
 
-## 🚀 Future Enhancements
+- **API Key** - Your Gemini API key
+- **Model Selection** - Choose between Gemini models
+- **Temperature** - Creativity level (0.0-1.0)
+- **Max Tokens** - Response length limit
+- **Custom Instructions** - Personalized analysis focus
 
-### **AI & Intelligence**
-- **Advanced AI Models**: Integration with GPT-5 and other cutting-edge models
-- **Voice Commands**: Voice interaction with AI assistant
-- **Predictive Analytics**: AI predictions about productivity patterns
-- **Smart Scheduling**: AI-powered time management suggestions
-- **Emotion Analysis**: AI analysis of mood and stress patterns
+## API Integration
 
-### **Productivity Features**
-- **Goal Setting**: Set and track productivity goals with AI guidance
-- **Team Analytics**: Shared productivity insights for teams
-- **Smart Notifications**: Context-aware productivity reminders
-- **Focus Modes**: AI-suggested focus sessions based on patterns
-- **Habit Tracking**: AI-powered habit formation and tracking
+### Gemini REST API
 
-### **Platform Expansion**
-- **Wear OS Support**: Companion app for smartwatches
-- **Desktop Integration**: Cross-platform productivity tracking
-- **API Access**: Third-party integrations and custom workflows
-- **Cloud Sync**: Optional cloud backup and sync (privacy-preserving)
+The app uses direct REST API calls for video analysis:
 
-### **Advanced Analytics**
-- **Trend Analysis**: Long-term productivity trend analysis
-- **Comparative Insights**: Compare productivity across time periods
-- **Custom Dashboards**: Personalized analytics dashboards
-- **Export Features**: Advanced data export and reporting
+```kotlin
+// File upload with resumable protocol
+val fileUri = geminiRestService.uploadFile(videoFile, apiKey)
+
+// Multi-modal analysis
+val analysis = geminiRestService.analyzeFile(
+    fileUri = fileUri,
+    question = "Analyze this productivity session",
+    apiKey = apiKey
+)
+```
+
+### Supported Analysis Types
+
+- **General Q&A** - Ask any question about recorded content
+- **Productivity Analysis** - Focused insights on work patterns
+- **App Usage Analysis** - Detailed breakdown of application usage
+- **Time Management** - Analysis of time allocation and efficiency
+- **Distraction Analysis** - Identification of productivity blockers
+- **Summary Generation** - Comprehensive session overviews
+
+## Data Models
+
+### Core Entities
+
+```kotlin
+// Recording sessions
+data class ActivitySession(
+    val id: Long,
+    val startTime: Long,
+    val endTime: Long?,
+    val isActive: Boolean,
+    val videoPath: String?,
+    val geminiFileUri: String?,
+    val productivityScore: Float?
+)
+
+// User interactions
+data class ActivityEvent(
+    val id: Long,
+    val sessionId: Long,
+    val timestamp: Long,
+    val eventType: String,
+    val appPackage: String?,
+    val appName: String?
+)
+
+// AI-generated insights
+data class AIInsight(
+    val id: Long,
+    val sessionId: Long,
+    val insightType: String,
+    val title: String,
+    val description: String,
+    val confidence: Float
+)
+```
+
+## File Management
+
+### Storage Locations
+
+- **Video files**: `External Storage/Movies/AttentionAI/`
+- **Database**: Internal app storage
+- **Uploaded files**: Tracked via `UploadedFile` entities
+
+### File Lifecycle
+
+1. **Recording** → Local MP4 file created
+2. **Upload** → File sent to Gemini via resumable upload
+3. **Analysis** → Gemini processes video content
+4. **Storage** → File URI stored in database
+5. **Cleanup** → Old files can be automatically removed
+
+## Performance Optimizations
+
+### Video Recording
+- **Reduced resolution** (360x640) for smaller file sizes
+- **Lower frame rate** (15 FPS) for extended battery life
+- **HEVC encoding** when available for better compression
+- **Optimized bitrates** for quality vs. size balance
+
+### Network
+- **Resumable uploads** for reliable large file transfers
+- **Retry logic** for failed API calls
+- **Connection timeouts** tuned for mobile networks
+- **Background processing** to avoid UI blocking
+
+### Database
+- **Efficient indexing** on frequently queried columns
+- **Batch operations** for multiple inserts
+- **Migration handling** for schema updates
+- **Background cleanup** of old records
+
+## Troubleshooting
+
+### Common Issues
+
+**Screen recording fails to start**
+- Ensure all permissions are granted
+- Restart the app and try again
+- Check device compatibility (Android 7.0+)
+
+**Audio not captured**
+- System audio requires special permissions
+- Some devices may not support system audio capture
+- Microphone audio works as fallback
+
+**AI analysis errors**
+- Verify Gemini API key is correct and active
+- Check internet connection
+- Ensure uploaded file is fully processed (may take time)
+
+**Large file upload failures**
+- Check available storage space
+- Ensure stable internet connection
+- Resumable upload will retry automatically
+
+### Debug Logs
+
+Enable debug logging by checking logcat for tags:
+- `ScreenRecordingService` - Recording issues
+- `GeminiRestService` - API communication
+- `MainActivity` - UI and permission issues
+
+## Privacy & Security
+
+### Data Handling
+- **Local processing** - Videos stored locally first
+- **User consent** - Explicit permission for screen capture
+- **Secure upload** - HTTPS communication with Gemini
+- **API key protection** - Stored securely in SharedPreferences
+
+### Content Privacy
+- **No permanent storage** on external servers beyond Gemini
+- **User control** - Users can delete sessions and files
+- **Selective analysis** - Only uploaded content is analyzed
+- **Transparency** - Clear indication when recording is active
 
 ## Contributing
 
-We welcome contributions! Please see our contributing guidelines for details on:
-- Code style and standards
-- Testing requirements
-- Pull request process
-- Issue reporting
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. **Fork the repository**
+2. **Create a feature branch**
+3. **Set up development environment** with Android Studio
+4. **Configure test API keys** for development
+5. **Run tests** before submitting PRs
+
+### Code Style
+
+- **Kotlin coding conventions**
+- **MVVM architecture patterns**
+- **Comprehensive error handling**
+- **Documentation for public APIs**
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- **Google Gemini AI** for advanced video analysis capabilities
+- **Android MediaProjection API** for screen recording functionality
+- **Jetpack Compose** for modern UI development
+- **Room Database** for local data persistence
 
 ## Support
 
-For support, feature requests, or bug reports:
-- Create an issue in the GitHub repository
-- Contact the development team
-- Check the documentation and FAQ
-
-## 🎯 **Why AttentionAI?**
-
-### **The Problem**
-- **Digital Distraction**: We spend hours on our phones but don't understand our patterns
-- **Productivity Blind Spots**: We can't see where our time actually goes
-- **Lack of Insights**: Basic usage stats don't provide actionable advice
-- **No Personalization**: Generic productivity advice doesn't fit individual needs
-
-### **The Solution**
-- **AI-Powered Analysis**: Deep understanding of your digital behavior patterns
-- **Intelligent Insights**: Personalized recommendations based on your actual usage
-- **Comprehensive Tracking**: See and hear everything that happens on your phone
-- **Actionable Advice**: Specific, tailored recommendations for improvement
-
-### **Key Benefits**
-- **Understand Your Patterns**: AI reveals hidden productivity patterns
-- **Get Personalized Advice**: Recommendations tailored to your specific behavior
-- **Track Real Progress**: See actual improvements over time
-- **Make Informed Decisions**: Data-driven insights for better choices
-- **Improve Focus**: AI helps identify and reduce distractions
+For support, please:
+1. **Check troubleshooting section** above
+2. **Search existing issues** on GitHub
+3. **Create a new issue** with detailed information
+4. **Include logs** and device information
 
 ---
 
-**Note**: This app is designed for personal productivity enhancement. Always respect privacy laws and regulations in your jurisdiction when using screen recording features. The AI features require an OpenAI API key and internet connection.
+**Built with ❤️ for productivity enthusiasts**
